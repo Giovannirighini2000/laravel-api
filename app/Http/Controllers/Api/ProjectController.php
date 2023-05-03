@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     public function index(){
-        $projects = Project::all();
+        $results = Project::with('type:id,name','type.projects','technologies:name')->get();
         return response()->json([
-            'projects' => $projects,
-
+            'results'=>$results,
         ]);
     }
 }
